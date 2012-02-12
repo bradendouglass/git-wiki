@@ -117,10 +117,15 @@ module GitWiki
       end
 
       def wiki_link(str)
-        str.gsub(/([A-Z][a-z]+[A-Z][A-Za-z0-9]+)/) { |page|
+        if /\{\{([A-Z][a-z]+[A-Z][A-Za-z0-9]+)\}\}/ =~ str
+          str.gsub(/([A-Z][a-z]+[A-Z][A-Za-z0-9]+)/) {|page| %Q{#{page}}}.delete "/\A({{).*(}})\z/"
+        elsif /([A-Z][a-z]+[A-Z][A-Za-z0-9]+)/ =~ str
+          str.gsub(/([A-Z][a-z]+[A-Z][A-Za-z0-9]+)/) { |page|
           %Q{<a class="#{self.class.css_class_for(page)}"} +
-            %Q{href="/#{page}">#{page}</a>}
-        }
+            %Q{href="/#{page}">#{page}</a>}}
+        else
+          str
+          end
       end
   end
 
@@ -166,8 +171,8 @@ module GitWiki
 
     private
       def title(title=nil)
-        @title = title.to_s unless title.nil?
-        @title
+        @title = title.to_s.split /(?=[A-Z])/ unless title.nil?
+        @title.join(' ')
       end
 
       def list_item(page)
