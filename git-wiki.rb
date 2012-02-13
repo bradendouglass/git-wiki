@@ -118,14 +118,14 @@ module GitWiki
 
       def wiki_link(str)
         if /\{\{([A-Z][a-z]+[A-Z][A-Za-z0-9]+)\}\}/ =~ str
-          str.gsub(/([A-Z][a-z]+[A-Z][A-Za-z0-9]+)/) {|page| %Q{#{page}}}.delete "/\A({{).*(}})\z/"
+          str.gsub(/\{\{([A-Z][a-z]+[A-Z][A-Za-z0-9]+)\}\}/) { |page| %Q{<p style="display: inline">#{page.scan(/[a-zA-Z]+/)[0]}</p>}}
         elsif /([A-Z][a-z]+[A-Z][A-Za-z0-9]+)/ =~ str
           str.gsub(/([A-Z][a-z]+[A-Z][A-Za-z0-9]+)/) { |page|
           %Q{<a class="#{self.class.css_class_for(page)}"} +
             %Q{href="/#{page}">#{page}</a>}}
         else
           str
-          end
+        end
       end
   end
 
