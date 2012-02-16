@@ -7,9 +7,9 @@ Mods in This Fork
 -----------------
 Page Links: linking, like in many wikis, is performed by
 using CamelCase words. This makes life tricky since many
-modules and classes in Ruby are CamelCase. To escape a
-word from auto linking, surround it in {{ }} or "squirrely"
-brackets.
+modules and classes in Ruby are CamelCase. CamelCase linking 
+has been disabled. To link to separate pages, surround the link
+with double squirrely brackets {{link}}.
 
 Page and Title Names: The page title and name was
 tied to the name of the markdown file. This was changed
@@ -17,7 +17,7 @@ to break up CamelCasing. However, if you write "USABrief" then
 the title and the H1 tag will read "U S A Brief". Just make
 sure to have a lowercase character between each uppercase
 char. This adds to readability and still allows the file
-names to be grep-able.
+names to be grep-able with git ls | grep.
 
 Licence
 -------
