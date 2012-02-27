@@ -1,7 +1,7 @@
 require "sinatra/base"
 require "haml"
 require "grit"
-require "rdiscount"
+require "kramdown"
 
 module GitWiki
   class << self
@@ -75,7 +75,7 @@ module GitWiki
     end
 
     def to_html
-      RDiscount.new(wiki_link(content)).to_html
+      Kramdown::Document.new(wiki_link(content)).to_html
     end
 
     def to_s
