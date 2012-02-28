@@ -75,7 +75,7 @@ module GitWiki
     end
 
     def to_html
-      Kramdown::Document.new(wiki_link(content)).to_html
+      Kramdown::Document.new(content).to_html
     end
 
     def to_s
@@ -114,13 +114,6 @@ module GitWiki
 
       def commit_message
         new? ? "Created #{name}" : "Updated #{name}"
-      end
-
-      def wiki_link(str)
-        str.gsub(/\{{2}([A-Z][a-z]+[A-Z][A-Za-z0-9]+)\}{2}/) { |page|
-          %Q{<a class="#{self.class.css_class_for(page.scan(/[a-zA-Z]+/)[0])}"} +
-            %Q{href="/#{page.scan(/[a-zA-Z]+/)[0]}">#{page.scan(/[a-zA-Z]+/)[0]}</a>}
-        }
       end
   end
 
