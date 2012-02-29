@@ -5,19 +5,21 @@ git-wiki: because who needs cool names when you use git?
 
 Mods in This Fork
 -----------------
-Page Links: linking, like in many wikis, is performed by
-using CamelCase words. This makes life tricky since many
-modules and classes in Ruby are CamelCase. CamelCase linking 
-has been disabled. To link to separate pages, surround the link
-with double squirrely brackets {{link}}.
+__Page Links__: Removed all the weird wiki syntax and the previous {{}}
+styling. Instead rely on markdown...because markdown will suffice. If
+linking to internal pages use '/pageName' instead of the whole URL.
 
-Page and Title Names: The page title and name was
+__Page and Title Names__: The page title and name was
 tied to the name of the markdown file. This was changed
 to break up CamelCasing. However, if you write "USABrief" then
 the title and the H1 tag will read "U S A Brief". Just make
 sure to have a lowercase character between each uppercase
 char. This adds to readability and still allows the file
 names to be grep-able with git ls | grep.
+
+__Kramdown__: Original used Rdiscount which is a good markdown renderer
+but nothing compared to Kramdown. Check out the project on github or on
+their homepage to figure out syntax and odities.
 
 Licence
 -------
